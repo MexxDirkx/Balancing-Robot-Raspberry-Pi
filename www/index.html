@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<!-- InstanceBeginEditable name="doctitle" -->
+		<title>PID robot</title>
+		<!-- InstanceEndEditable -->
+		<link rel="stylesheet" href="css/style.css" text="text/css" title="style" />
+		<!-- InstanceBeginEditable name="head" -->
+		<!-- InstanceEndEditable -->
+	</head>
+	<body>
+		<div id="header">
+			<div class="section">
+				<div class="logo">
+					<a href="http://10.212.51.65:5050">PID</a>
+				</div>
+			</div>
+		</div>
+		<div id="body">
+			<!-- InstanceBeginEditable name="edit" -->
+			<p>&nbsp;</p>
+			<div id="success"></div>
+			<p id="dataout"></p>
+			<div class="slidecontainer">				
+				<h5>Gewenste waarde</h5>
+				<p>Links = -5, rechts = +5</p>
+				<input type="range" min="-5" max="5" value="0" class="slider" id="W" />
+				<p>Value: <span id="displayW"></span></p>
+
+				<script type="text/javascript">
+					var sliderW = document.getElementById("W");
+					var outputW = document.getElementById("displayW");
+					outputW.innerHTML = sliderW.value;
+
+					sliderW.oninput = function () {
+						outputW.innerHTML = this.value ;
+						$("#W").load("/updateW", { Wnew: this.value  });
+					};
+				</script>
+			</div>
+
+			<div class="slidecontainer">
+				<h5>Proportionele waarde</h5>
+				<p>P 0-10</p>
+				<input type="range" min="0" max="10" value="1" step="0.5" class="slider" id="P" />
+				<p>Value: <span id="displayP"></span></p>
+				<script type="text/javascript">
+					var sliderP = document.getElementById("P");
+					var outputP = document.getElementById("displayP");
+					outputP.innerHTML = sliderP.value;
+
+					sliderP.oninput = function () {
+						outputP.innerHTML = this.value ;
+						$("#P").load("/updateP", { Pnew: this.value  });
+					};
+				</script>
+			</div>
+
+			<div class="slidecontainer">
+				<h5>Integrerende waarde</h5>
+				<p>I 0-5</p>
+				<input type="range" min="0" max="5" value="0" step="0.1" class="slider" id="I" />
+				<p>Value: <span id="displayI"></span></p>
+				<script type="text/javascript">
+					var sliderI = document.getElementById("I");
+					var outputI = document.getElementById("displayI");
+					outputI.innerHTML = sliderI.value;
+
+					sliderI.oninput = function () {
+						outputI.innerHTML = this.value;
+						$("#I").load("/updateI", { Inew: this.value });
+					};
+				</script>
+			</div>
+
+			<div class="slidecontainer">
+				<h5>Difrentiele waarde</h5>
+				<p>D 0-1</p>
+				<input
+					type="range"
+					min="0"
+					max="1"
+					value="0"
+					step="0.1"
+					class="slider"
+					id="D"
+				/>
+				<p>Value: <span id="displayD"></span></p>
+				<script type="text/javascript">
+					var sliderD = document.getElementById("D");
+					var outputD = document.getElementById("displayD");
+					outputD.innerHTML = sliderD.value;
+
+					sliderD.oninput = function () {
+						outputD.innerHTML = this.value ;
+						$("#D").load("/updateD", { Dnew: this.value  });
+					};
+				</script>
+			</div>
+			<p>&nbsp;</p>
+			<!-- InstanceEndEditable -->
+		</div>
+		<div id="footer">
+			<div>
+				<div class="connect">
+					<a href="http://freewebsitetemplates.com/go/twitter/" id="twitter"
+						>twitter</a
+					>
+					<a href="http://freewebsitetemplates.com/go/facebook/" id="facebook"
+						>facebook</a
+					>
+					<a
+						href="http://freewebsitetemplates.com/go/googleplus/"
+						id="googleplus"
+						>googleplus</a
+					>
+					<a href="http://pinterest.com/fwtemplates/" id="pinterest"
+						>pinterest</a
+					>
+				</div>
+				<p>&copy; Thomas | all rights reserved.</p>
+			</div>
+		</div>
+		<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+		<script>
+			function buttonvalue(nummer) {
+				$("#success").load("/datain", { getal: nummer });
+			}
+			
+		</script>
+	</body>
+	<!-- InstanceEnd -->
+</html>
